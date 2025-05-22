@@ -1,4 +1,7 @@
-import React from 'react';
+import 'bootstrap/dist/css/bootstrap.css';
+// Put any other imports below so that CSS from your
+// components takes precedence over default styles.
+import React, {lazy, Suspense} from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
@@ -7,11 +10,18 @@ import About from "./components/About";
 import Contact from "./components/ContactUs";
 import Error from "./components/Error";
 import Body from "./components/Body";
+import RestaurantMenu from "./components/RestaurantMenu";
+// import Grocery from './components/Grocery';
 
 import {createBrowserRouter, RouterProvider} from 'react-router-dom';
 
 
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
+const Grocery= lazy(()=>import ('./components/Grocery'));
+
+
 
 const appRouter = createBrowserRouter([
   {
@@ -30,7 +40,14 @@ const appRouter = createBrowserRouter([
         path:"/contact",
         element:<Contact/>
       },
-      
+      {
+        path:"/grocery",
+        element:<Suspense fallback={<h1>Grocery Loading.....</h1>}><Grocery/></Suspense>
+      },
+      {
+        path:"/restaurants/:resId",
+        element:<RestaurantMenu/>
+      },
     ],
     errorElement:<Error/>
   },

@@ -1,3 +1,8 @@
+/* @import "tailwindcss"; */
+
+
+
+
 .App {
   text-align: center;
 }
@@ -19,12 +24,8 @@
   list-style-type: none;
   
 }
-.nav-items > ul > li{
-  padding: 5px;
-  margin: 5px;
-
- 
-
+.header-font{
+  font-size: 1.5rem;
 }
 
 .header {
@@ -39,7 +40,7 @@
 }
 .res-card{
   width: 215px;
-  /* height: 200px; */
+  /* height: 95%; */
 background-color: rgba(215, 221, 220, 0.988);
   padding: 5px;
   margin: 5px;
@@ -48,18 +49,122 @@ background-color: rgba(215, 221, 220, 0.988);
   border: #89cee7 3px solid;
   cursor: pointer;
 }
+
+.item-card-name{
+  /* font-weight: 600;
+  font-size: 16px;
+    line-height: 22px;
+    letter-spacing: -0.45px;
+    color: rgba(2, 6, 12, 0.75); */
+
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.rest-name{
+    
+    font-weight: 600;
+    font-size: 18px;
+    
+    color: rgba(2, 6, 12, 0.92);
+    overflow: hidden;
+    width: 100%;
+    display: -webkit-box;
+    overflow-wrap: break-word;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+.header-items{
+  padding: 5px;
+  margin: 5px;
+  text-decoration: none;
+}
+
+.item-card-box {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.25rem;
+  font-weight: 500;
+}
+
+.item-card-box .me-2 {
+  color: gold; /* Or any color you prefer for the star */
+}
+
+.item-card-image {
+  width: 100px; /* Adjust as needed */
+  height: auto;
+  border-radius: 4px; /* Optional: for rounded corners */
+  object-fit: cover; /* Ensures the image covers the area without distortion */
+}
+.item-card-ratings{
+  color:green;
+}
+
+.offer-label{
+  position: absolute;
+  display: block;
+  color: white;
+  font-weight: bold;
+  /* margin: 10px; */
+  /* padding: 10px; */
+  background-color: black;
+  border-radius: 10px;
+  border:black solid;
+
+}
 .res-card > img{
   width: 95%;
   height: 50%;
+  border-radius: 6%;
+}
+.menu{
+  padding: 1%;
+}
+
+.menu > img{
+  width: 25%;
+  height: 20%;
+  display: inline;
 }
 .res-card > h5{
   overflow: hidden;
 }
+.menu-card{
+            /* list-style: none;
+            display: flex;
+                flex-direction: column;
+                align-items: flex-start; */
+        
+
+
+            list-style: none;
+            padding: 0;
+            margin: 0;
+}
+.cost{
+  margin-left: 5%;
+}
+
+.menu-header{
+  display: flex;
+  justify-content: center;
+  font-weight: bold;
+   
+  
+}
+.menu-header1{
+  margin-right: 10px;
+}
+.red{
+  color: red;
+  font-weight: bold;
+}
 
 .slaString{
-
   padding-bottom: 50px;
 }
+
 .res-container{
   display: flex;
   flex-wrap: wrap;
@@ -114,4 +219,12 @@ background-color: rgba(215, 221, 220, 0.988);
   margin-left: auto;
   margin-right: auto;
   width: 60%;
+}
+
+.user-card{
+  border: 1px dotted green ;
+  width: 25%;
+  margin-left: 38%;
+  color:darkslategrey;
+  margin-top: 15px;
 }

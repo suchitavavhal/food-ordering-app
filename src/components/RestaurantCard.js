@@ -7,17 +7,34 @@ const RestaurantCard=({resData})=>{
     return (
       <div className="res-card">
         <img alt="res logo" src={CDN_URL + resData.info.cloudinaryImageId} />
-         <h3>{resData.info.name}</h3>
-        <h4>{resData.info.areaName}</h4>
-        <h4>{resData.info.costForTwo}</h4>
-        <h5>{resData.info.cuisines.join(',')}</h5>
-        <h4>{resData.info.avgRating}</h4>
-        <h5 className="slaString">{resData.info.sla.slaString}</h5>
+         <p className="rest-name">{resData.info.name}</p>
+        <p>{resData.info.areaName}</p>
+        <p>{resData.info.costForTwo}</p>
+        <p>{resData.info.cuisines.join(',')}</p>
+        <p>{resData.info.avgRating}</p>
+        <p className="slaString">{resData.info.sla.slaString}</p>
        
       </div>
 
       
     )
   }
+// Higher Order Component
+export const withOffer = (RestaurantCard)=>{
+  return (props)=>{
+    console.log("props",props)
+
+    return (
+      <div>
+        {/* <label>{props.info.aggregatedDiscountInfoV3.header} {props.info.aggregatedDiscountInfoV3.subHeader}</label> */}
+        <label className="offer-label text-white"> {props.resData.info.aggregatedDiscountInfoV3.header}  {props.resData.info.aggregatedDiscountInfoV3.subHeader}</label>
+        <RestaurantCard {...props}/>
+      </div>
+    )
+
+  }
+
+}
+
 
   export default RestaurantCard;
