@@ -3,6 +3,7 @@ import {CDN_URL} from '../utils/constants'
 const RestaurantCard=({resData})=>{
     // const {resName, cuisine} = resData;
     console.log(resData)
+      
   
     return (
       <div className="res-card">
@@ -15,9 +16,10 @@ const RestaurantCard=({resData})=>{
         <p className="slaString">{resData.info.sla.slaString}</p>
        
       </div>
-
+    
       
     )
+
   }
 // Higher Order Component
 export const withOffer = (RestaurantCard)=>{
@@ -27,7 +29,8 @@ export const withOffer = (RestaurantCard)=>{
     return (
       <div>
         {/* <label>{props.info.aggregatedDiscountInfoV3.header} {props.info.aggregatedDiscountInfoV3.subHeader}</label> */}
-        <label className="offer-label text-white"> {props.resData.info.aggregatedDiscountInfoV3.header}  {props.resData.info.aggregatedDiscountInfoV3.subHeader}</label>
+        <label className="offer-label text-white">{props.resData.info.veg ? 'Veg': null}</label>
+        {/* <label className="offer-label text-white">{props.resData.info.veg ? 'Veg': null} {props.resData.info.aggregatedDiscountInfoV3.header}  {props.resData.info.aggregatedDiscountInfoV3.subHeader}</label> */}
         <RestaurantCard {...props}/>
       </div>
     )

@@ -1,10 +1,11 @@
+import {useState, useEffect} from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import Header from './components/Header';
 import Body from './components/Body';
 import FoodBody from './components/FoodBody';
-import {Outlet} from 'react-router-dom'
-
+import {Outlet} from 'react-router-dom';
+import UserContext from "./utils/UserContext";
 
 
 // https://innovist.com/pages/bare-anatomy-store
@@ -18,12 +19,28 @@ import {Outlet} from 'react-router-dom'
 
 
 function App() {
+
+  const [userName, setUserName]= useState();
+
+
+  useEffect(()=>{
+
+    const data={
+      name: "Suchita",
+    }
+
+    setUserName(data.name);
+  },[]);
+
+
   return (
+    <UserContext.Provider value={{loggedInUser: userName, setUserName }}>
     <div className="App">
       <Header />
       <Outlet/>
       {/* <FoodBody/> */}
     </div>
+    </UserContext.Provider>
   );
 }
 

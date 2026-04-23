@@ -1,10 +1,12 @@
-import React, { useState, useEffect, Suspense } from "react";
+import React, { useState, useEffect, Suspense , useContext} from "react";
 import {Link} from 'react-router-dom';
 
 import RestaurantCard, { withOffer } from "./RestaurantCard";
 import Shimmer from "./Shimmer";
 
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext";
+import { RESTAURANT_URL } from "../utils/constants";
 // import restaurants from "../utils/mockData";
 
 const Body = () => {
@@ -18,8 +20,10 @@ const Body = () => {
   const [btnName, setBtnName]= useState('Top Rated Restaurants');
   const onlineStatus= useOnlineStatus();
   const WithOfferRestaurant = withOffer(RestaurantCard);
+  const {loggedInUser, setUserName}= useContext(UserContext);
 
   console.log("filteredData", filteredData);
+  
 
   const [searchText, setSearchText] = useState("");
 
@@ -46,11 +50,9 @@ const Body = () => {
 
     setLoading(true);
 
-    const api = `https://www.swiggy.com/dapi/restaurants/list/v5?lat=18.4608064&lng=73.80808689999999&nextOffset=CJhlELQ4KICoopeCv8zsWDCnEzgD&is-seo-homepage-enabled=false&page_type=DESKTOP_WEB_LISTING`;
+      try {
 
-    try {
-      const data = await fetch(api);
-
+      const data= await fetch(RESTAURANT_URL);
       if (!data.ok) {
         throw new Error("Network Response Error");
       }
@@ -60,7 +62,7 @@ const Body = () => {
       console.log(json);
 
       // const restaurantList = json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants || [];
-      const restaurantList = json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants || [];
+      const restaurantList = json?.data?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants || [];
       console.log(restaurantList);
 
      
@@ -157,6 +159,10 @@ const Body = () => {
         >
         {btnName}
         </button>
+        <div>
+        <label className="me-3">User Name :</label>
+        <input type="text" className="border border-dark rounded-3 ps-3" value={loggedInUser}  onChange={(e)=>{setUserName(e.target.value)}}/>
+        </div>
       </div>
       <div className="res-container">
         {filteredData.map((restaurant) => (
